@@ -67,5 +67,22 @@ module.exports = {
     const { id } = request.params
 		const user = users.filter((person) => person.id === id * 1)
     response.status(200).send(user)
-	}
+  },
+  createUser: (req, res) => {
+    const {first_name, last_name, email} = req.body
+    const newUser = {
+      id: users[users.length -1 ].id + 1,
+      first_name: first_name,
+      last_name: last_name,
+      email: email
+    }
+    users.push(newUser)
+    res.status(200).send(newUser)
+  },
+  editUser: (req, res) => {
+    const {id} = req.params
+    const user = users.filter((person) => person.id === id * 1)
+    console.log(user[0].first_name)
+    console.log(1111, req.body)
+  }
 }
