@@ -1,4 +1,3 @@
-// here is our user Array. we will get all of our data out of here
 const users = [
   {
     id: 1,
@@ -61,21 +60,12 @@ const users = [
     email: 'cgisbye9@devmountain.com'
   }
 ]
-// module.exports allows us to export anything. In this case we are exporting a object with some methods
+
 module.exports = {
-  getUsers: (req, res) => res.status(200).send(users),
-  getUserByID: (req, res) => {
-    const { id } = req.params
-    const user = users.filter((person) => person.id === id * 1)
-    res.status(200).send(user)
-  },
-  getUserByFirstName: (req, res) => {
-    const firstName = req.params.firstName
-    const user = users.filter((person) => person.first_name === firstName)
-    res.status(200).send(user)
-  },
-  getUserByEmail: (req, res) => {
-    const data = users.filter((user) => user.email.includes(req.query.email))
-    res.status(200).send(data)
-  }
+	getUsers: (request, response) => response.status(200).send(users),
+  getUserByID: (request, response) => {
+    const { id } = request.params
+		const user = users.filter((person) => person.id === id * 1)
+    response.status(200).send(user)
+	}
 }
